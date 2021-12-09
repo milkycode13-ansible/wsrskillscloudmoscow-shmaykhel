@@ -6,7 +6,7 @@
   systemd:
     name: sshd
     state: restarted
-  failed_when: false
+  # failed_when: false
   listen: restart sshd
 - name: wait for port
   wait_for:
