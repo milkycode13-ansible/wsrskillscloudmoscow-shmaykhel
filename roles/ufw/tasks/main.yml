@@ -3,13 +3,13 @@
 
 - name: Allow ports
   ufw:
-    direction: incoming
+    rule: allow 
     proto: tcp
     port: "{{ item }}"
   loop:
-    - 80
-    - 8888
-    - 1467
+    - "80"
+    - "8888"
+    - "1467"
 - name: Enable and reload UFW
   ufw:
     state: enabled
