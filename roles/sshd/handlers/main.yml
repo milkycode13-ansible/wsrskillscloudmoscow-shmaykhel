@@ -5,9 +5,20 @@
 - name: restart sshd service
   systemd:
     name: sshd
-    enabled: yes
+    enabled: true
     state: restarted
+  failed_when: false
   listen: restart sshd
+- name: wait for port
+  wait_for:
+    port: "{{ ansible_port }}"
+    state: "started"
+    host: "{{ inventory_hostname }}"
+    connect_timeout: "5"
+    timeout: "25"
+  delegate_to: "localhost"
+  listen: restart sshd
+
 # from https://github.com/chmduquesne/ansible-iptables-persistent
 - name: save iptables v4 rules
   shell: iptables-save > /etc/iptables/rules.v4
