@@ -45,6 +45,12 @@
     - name: Run script
       script: docker-compose.sh
 
+- name: Prepare files
+  hosts: all
+  become: true
+  roles:
+    - prepare_site
+
 - name: Reboot server
   hosts: all
   become: true
