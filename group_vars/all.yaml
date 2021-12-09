@@ -1,4 +1,6 @@
 ---
 ansible_port: 1467
+ansible_user: vmuser
+ansible_password: vmpass
 
 docker_install_compose: false
