@@ -3,11 +3,13 @@
 - name: Set up SSH
   hosts: all
   gather_facts: false
+  become: true
   roles:
     - sshd
 
 - name: Install curl
   hosts: all
+  become: true
   tasks:
     - name: Install curl
       ansible.builtin.apt:
@@ -17,11 +19,13 @@
 
 - name: Configure UFW
   hosts: all
+  become: true
   roles:
     - ufw
 
 - name: Set up users
   hosts: all
+  become: true
   pre_tasks:
     - name: Import users file
       ansible.builtin.include_vars:
@@ -31,17 +35,20 @@
 
 - name: Install Docker
   hosts: all
+  become: true
   roles:
     - geerlingguy.docker
 
 - name: Install docker-compose
   hosts: all
+  become: true
   tasks:
     - name: Run script
       script: docker-compose.sh
 
 - name: Reboot server
   hosts: all
+  become: true
   tasks:
     - name: reboot
       ansible.builtin.reboot:
