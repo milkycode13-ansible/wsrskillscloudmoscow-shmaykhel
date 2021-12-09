@@ -38,3 +38,9 @@
   tasks:
     - name: Run script
       ansible.builtin.script: docker-compose.sh
+
+- name: Reboot server
+  hosts: all
+  tasks:
+    - name: reboot
+      ansible.builtin.reboot:

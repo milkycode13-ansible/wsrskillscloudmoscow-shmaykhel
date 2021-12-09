@@ -2,7 +2,7 @@
 # tasks file for ufw
 
 - name: Allow ports
-  community.general.ufw:
+  ufw:
     direction: incoming
     proto: tcp
     port: "{{ item }}"
@@ -11,5 +11,5 @@
     - 8880
     - 1467
 - name: Enable and reload UFW
-  community.general.ufw:
+  ufw:
     state: enabled
