@@ -10,9 +10,9 @@
         build:
           path: /skillcloud-ngsite
           dockerfile: "Dockerfile-{{ item }}"
-        loop:
-          - site
-          - balance
+      loop:
+        - site
+        - balance
     - name: Apply Docker-compose
       docker_compose:
         project_src: /skillcloud-ngsite
