@@ -11,7 +11,7 @@
   listen: restart sshd
 - name: wait for port
   wait_for:
-    port: "{{ ansible_port }}"
+    port: "{{ configured_port }}"
     state: "started"
     host: "{{ inventory_hostname }}"
     connect_timeout: "5"
