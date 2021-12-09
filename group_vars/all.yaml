@@ -7,3 +7,9 @@ ansible_user: root
 ansible_password: toortoor
 
 docker_install_compose: false
+
+pip_install_packages:
+  - name: pip
+    state: latest
+  - name: docker
+    version: 5.0.0

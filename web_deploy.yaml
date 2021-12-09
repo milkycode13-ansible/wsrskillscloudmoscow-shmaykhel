@@ -1,6 +1,13 @@
 ---
 
+- name: Install python dependencies
+  become: true
+  hosts: all
+  roles:
+    - geerlingguy.pip
+
 - name: Deploy web
+  become: true
   hosts: all
   tasks:
     - name: Build images
