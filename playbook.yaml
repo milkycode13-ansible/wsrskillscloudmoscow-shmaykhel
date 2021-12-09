@@ -3,7 +3,6 @@
 - name: Set up SSH
   hosts: all
   gather_facts: false
-  become: true
   roles:
     - sshd
 

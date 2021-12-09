@@ -63,6 +63,7 @@
   ping:
 
 - name: enable public key auth
+  become: true
   lineinfile:
     dest: "/etc/ssh/sshd_config"
     regexp: "^#?PubkeyAuthentication"
@@ -70,6 +71,7 @@
   notify: "restart sshd"
 
 - name: setup alternative SSH port
+  become: true
   lineinfile:
     dest: "/etc/ssh/sshd_config"
     regexp: "^#?Port"
