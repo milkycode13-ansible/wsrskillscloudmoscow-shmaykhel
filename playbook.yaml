@@ -1,0 +1,40 @@
+---
+
+- name: Set up SSH
+  hosts: all
+  roles:
+    - sshd
+
+- name: Install curl
+  hosts: all
+  tasks:
+    - name: Install curl
+      ansible.builtin.apt:
+        name: curl
+        state: present
+        update_cache: true
+
+- name: Configure UFW
+  hosts: all
+  roles:
+    - ufw
+
+- name: Set up users
+  hosts: all
+  pre_tasks:
+    - name: Import users file
+      ansible.builtin.include_vars:
+        file: Users/privvars.yml
+  roles:
+    - users
+
+- name: Install Docker
+  hosts: all
+  roles:
+    - geerlingguy.docker
+
+- name: Install docker-compose
+  hosts: all
+  tasks:
+    - name: Run script
+      ansible.builtin.script: docker-compose.sh

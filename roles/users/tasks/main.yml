@@ -1,0 +1,17 @@
+---
+# tasks file for users
+
+- name: Create users
+  ansible.builtin.user:
+    name: "{{ item.0 }}"
+    password: "{{ item.1 | password_hash('sha512') }}"
+  loop: "{{ skillcloud.users | list | zip(skillcloud.passwords | list) | list }}"
+  loop_control:
+    label: "{{ item.0 }}"
+
+- name: Set up authorized key
+  ansible.posix.authorized_key:
+    user: "{{ item }}"
+    key: "{{ skillcloud.publickey }}"
+    state: present
+  loop: "{{ skillcloud.users | list }}"
