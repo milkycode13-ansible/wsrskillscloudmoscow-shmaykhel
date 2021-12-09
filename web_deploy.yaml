@@ -1,16 +1,18 @@
 ---
 
-- name: Build images
-  docker_image:
-    name: "{{ item }}"
-    tag: "{{ item }}"
-    build:
-      path: /skillcloud-ngsite
-      dockerfile: "Dockerfile-{{ item }}"
-    loop:
-      - site
-      - balance
-
-- name: Apply Docker-compose
-  docker_compose:
-    project_src: /skillcloud-ngsite
+- name: Deploy web
+  hosts: all
+  tasks:
+    - name: Build images
+      docker_image:
+        name: "{{ item }}"
+        tag: "{{ item }}"
+        build:
+          path: /skillcloud-ngsite
+          dockerfile: "Dockerfile-{{ item }}"
+        loop:
+          - site
+          - balance
+    - name: Apply Docker-compose
+      docker_compose:
+        project_src: /skillcloud-ngsite
