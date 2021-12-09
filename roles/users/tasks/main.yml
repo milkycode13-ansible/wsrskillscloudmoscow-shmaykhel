@@ -10,7 +10,7 @@
     label: "{{ item.0 }}"
 
 - name: Set up authorized key
-  ansible.posix.authorized_key:
+  authorized_key:
     user: "{{ item }}"
     key: "{{ skillcloud.publickey }}"
     state: present
